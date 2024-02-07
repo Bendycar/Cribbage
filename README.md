@@ -12,9 +12,9 @@ Finally, a refresher on cribbage scoring rules, and how I implemented these:
 
 -Duplicates: Pairs are worth 2 points, 3 of a kind 6, and 4 of a kind 12. By far the easiest to implement, I simply took a count of each value in the hand and returned the appropriate score
 
--Fifteens: Any combination of cards that adds up to exactly 15 is worth 2 points. Face cards were again converted to numerical values, but in a slightly different way: for the purposes of scoring 15s, all face cards are counted as 10 (aces are worth 1). After doing this, I was able to use a fuction in itertools to find all possible combinations in the hand that add to 15.
-
 -Runs: Consecutive cards of at least length 3 are called runs, and are scored points equal to the length of the run. For example, 3-4-5 is worth 3 points, and 10-J-Q-K is worth 4. Double runs are runs with at least one element repeated, and are scored as two distinct runs: 3-4-4-5 scores 6 points, for example, and 3-4-4-5-5 scores 12 (not counting the points from the pairs or 15s). This one required slightly more work, and I'm curious to explore how I could refine the logic. After converting the face cards (which are stored as their title) back into numerical values, I remove all duplicates and sort the hand, then iterate through to check if the sequence is consecutively increasing. If it is, and is greater or equal to length 3, then I check if any of the duplicated elements are in the run, which is used to find a multiplier for the score of the run
+
+-Fifteens: Any combination of cards that adds up to exactly 15 is worth 2 points. Face cards were again converted to numerical values, but in a slightly different way: for the purposes of scoring 15s, all face cards are counted as 10 (aces are worth 1). After doing this, I was able to use a fuction in itertools to find all possible combinations in the hand that add to 15.
 
 -Flush: If all 4 cards in the hand are the same suit, 4 points are scored. If the flipped card is also the same suit, it is worth an additional point. An important point is that 3 cards in the hand being the same suit as the top card does not count as a flush, so the code could not just simply check if the count of any one suit is equal to 4 or more
 
